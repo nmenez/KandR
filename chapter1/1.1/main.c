@@ -3,9 +3,9 @@
 #include <stdio.h>
 
 int main() {
-//    printf("hello, world\n");
-    int c = 0;
+   printf("hello, world\n");
+   /* int c = 0;
     int state = 1;
     printf("%d %d\n", c, state);
-    return 0;
+    return 0; */
 }
