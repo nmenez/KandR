@@ -1,8 +1,5 @@
 /* Exercise 1-17. Write a program to print all input lines that are longer than 80 characters. */
 
-/* Exercise 1-16. Revise the main routine of the longest-line program so it will correctly print
-the length of arbitrary long input lines, and as much as possible of the text. */
-
 
 #include <stdio.h>
 #define MAXLINE 1000
