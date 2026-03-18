@@ -69,7 +69,6 @@ int removetrailingspace(char s[], int len){
 	int i = len -1;
 	while ((s[i] == ' ' || s[i] == '\t' || s[i] =='\0' || s[i] == '\n') &&  (i >=0)) {
 		i--;
-		printf("i: %i\n", i);
 	}
 	if (i <  0){
 		s[0] = '\0';
