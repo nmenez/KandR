@@ -176,22 +176,35 @@ void swap(void){
 	push(top);
 	push(top2);
 }
-c
+
 void clear_stack(void){
 	sp = 0;
 }
 
 
 #include <ctype.h>
+#define MAXLINE 1024
 int getch();
 void ungetch(int);
-int line_index = 0;
+int line_index = -1;
+int line_len;
+char line[MAXLINE];
 
 int getop(char s[]){
-	
 	int i, c; 
 	char type;
-	while ((s[0] = c = getch()) == ' ' || c == '\t')
+
+	if ((line_index < 0) || (line[line_index] == '\n') || (line[line_index] == '\0')){
+		line_len = getline2(line, MAXLINE);
+		if (line_len == 0)
+			return EOF;
+		else{
+			line_index = -1;
+		}
+	}
+
+
+	while ((s[0] = c = line[++line_index]) == ' ' || c == '\t')
 		;
 
 	s[1] = '\0';
@@ -212,34 +225,35 @@ the modulus (%) operator and provisions for negative numbers. */
 	}
 
 	if (islower(c)){
-		while (islower(s[++i] = c = getch()))
+		while (islower(s[++i] = c = line[++line_index]))
 			;
 		type = FUNCTION;
 
 	}
 
 	if (isupper(c)){
-		while (isupper(s[++i] = c = getch()))
+		while (isupper(s[++i] = c = line[++line_index]))
 			;
 		type = VARIABLE;
 	}
 
 	if (isdigit(c) || (c == '-')){
-		while (isdigit(s[++i] = c = getch()))
+		while (isdigit(s[++i] = c = line[++line_index]))
 			;
 		type = NUMBER;
 	}
 	
 	if (c == '.'){ /* collect fraction part */
-		while (isdigit(s[++i] = c = getch()))
+		while (isdigit(s[++i] = c = line[++line_index]))
 			;
 		type = NUMBER;
 	}
 
 	s[i] = '\0';
-	if (c != EOF)
-		ungetch(c);
-	
+	if (c != EOF){
+		line_index--;
+	}
+
 	return type;
 }
 
@@ -277,8 +291,14 @@ int ungets(char s[]){
 
 #include<limits.h>
 int main(){
-	char line[1024];
-
-	while (getline2(line, 1024) > 0)
-		printf("%s", line);
+	// char type;
+	// char s[MAXLINE];
+	// while ((type = getop(s)) !=  EOF){
+	// 	printf("line_index: %i, type: %i: %s\n", line_index, type, s);
+	// }
+	// // int line_len;
+	// // while ((line_len = getline2(s, 1024)) >0){
+	// // 	printf("%i: %s", line_len, s);
+	// // }
+	RPC();
 }
