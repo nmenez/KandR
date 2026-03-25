@@ -1,4 +1,4 @@
-
+char c  = '\013'
 
 int is_open(int c){
     return ((c == '(') || (c=='[') || (c =='{'));

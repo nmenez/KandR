@@ -71,4 +71,13 @@ int main(){
 	printf("max usigned long %lu\n", max_long);
 
 
+
+	float current = 1.0;
+	float prev = 0.1;	
+	while (current > prev){
+		prev = current;
+		current  = current * 10;
+		printf("%f, %f\n", prev, current);
+	}
+	printf("\n%f\n", current);
 }
